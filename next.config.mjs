@@ -56,9 +56,9 @@ const nextConfig = {
   },
   output: 'standalone',
   env: {
-    //http://localhost:53899/api
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
-    NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:5000/hubs',
+    //http://20.42.90.94/flowcartapi/api
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://20.42.90.94/flowcartapi/api',
+    NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || 'ws://20.42.90.94/flowcartapi/hubs',
   },
   // PWA Configuration
   async headers() {

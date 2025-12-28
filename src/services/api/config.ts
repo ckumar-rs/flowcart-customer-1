@@ -5,8 +5,8 @@
 
 // Backend API URLs
 // Default to HTTP port 53899, can be overridden via environment variables
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:5000/hubs';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://20.42.90.94/flowcartapi/api';
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL || 'ws://20.42.90.94/flowcartapi/hubs';
 
 export const apiConfig = {
   baseUrl: API_BASE_URL,
