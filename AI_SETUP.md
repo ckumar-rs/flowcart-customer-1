@@ -7,7 +7,7 @@ FlowCart uses **Mistral AI** (open-source) for AI-powered features. You can use 
 
 ## Option 1: Mistral AI API (Recommended for Production)
 
-1. Sign up at [Mistral AI](https://mistral.ai/)
+1. Sign up at [Mistral AI](https://mistral.ai/) 
 2. Get your API key from the dashboard
 3. Add to `.env.local`:
    ```env
