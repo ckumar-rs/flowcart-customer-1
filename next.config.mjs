@@ -56,9 +56,9 @@ const nextConfig = {
   },
   output: 'standalone',
   env: {
-    //http://20.42.90.94/flowcartapi/api
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://20.42.90.94/flowcartapi/api',
-    NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || 'ws://20.42.90.94/flowcartapi/hubs',
+    // Production API URLs
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://flowcartapi.azurewebsites.net/api',
+    NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || 'wss://flowcartapi.azurewebsites.net/hubs',
   },
   // PWA Configuration
   async headers() {

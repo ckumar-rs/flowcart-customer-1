@@ -1,24 +1,11 @@
 /**
  * API Configuration
  * Reuses the same API endpoints as the mobile app
- * 
- * When deployed to Vercel (HTTPS), we use the Next.js API proxy to avoid Mixed Content errors
- * The proxy route at /api/proxy/[...path] forwards requests to the HTTP backend server-side
  */
 
-// Check if we're in the browser and on HTTPS (Vercel)
-const isHttps = typeof window !== 'undefined' && window.location.protocol === 'https:';
-const useProxy = isHttps && process.env.NEXT_PUBLIC_USE_API_PROXY !== 'false';
-
 // Backend API URLs
-// Use proxy when on HTTPS (Vercel), otherwise use direct HTTP
-const API_BASE_URL = useProxy 
-  ? '/api/proxy'  // Use Next.js API proxy (server-side, no Mixed Content)
-  : (process.env.NEXT_PUBLIC_API_URL || 'http://20.42.90.94/flowcartapi/api');
-
-// WebSocket still needs direct connection (can't proxy WebSocket easily)
-// For WebSocket, we'll need to handle it differently or use a different approach
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL || 'ws://20.42.90.94/flowcartapi/hubs';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://flowcartapi.azurewebsites.net/api';
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL || 'wss://flowcartapi.azurewebsites.net/hubs';
 
 export const apiConfig = {
   baseUrl: API_BASE_URL,
@@ -27,16 +14,10 @@ export const apiConfig = {
 };
 
 // Helper function to build endpoint URLs
-// When using proxy: baseURL = '/api/proxy', so endpoint should just be the path
-// When not using proxy: baseURL = 'http://...', so endpoint should just be the path
-// Axios will combine baseURL + endpoint automatically
+// Returns just the path - axios will combine it with baseURL
 const buildUrl = (path: string): string => {
   // Remove leading slash from path if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
-  // Always return just the path - axios will combine it with baseURL
-  // Proxy mode: baseURL (/api/proxy) + path (business/123) = /api/proxy/business/123 ✅
-  // Direct mode: baseURL (http://...) + path (business/123) = http://.../business/123 ✅
   return cleanPath;
 };
 
