@@ -27,17 +27,17 @@ export const apiConfig = {
 };
 
 // Helper function to build endpoint URLs
-// When using proxy, we need relative paths; otherwise use full URLs
+// When using proxy: baseURL = '/api/proxy', so endpoint should just be the path
+// When not using proxy: baseURL = 'http://...', so endpoint should just be the path
+// Axios will combine baseURL + endpoint automatically
 const buildUrl = (path: string): string => {
   // Remove leading slash from path if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   
-  if (useProxy) {
-    // Proxy mode: use relative path like /api/proxy/business/123
-    return `${API_BASE_URL}/${cleanPath}`;
-  }
-  // Direct mode: use full URL like http://20.42.90.94/flowcartapi/api/business/123
-  return `${API_BASE_URL}/${cleanPath}`;
+  // Always return just the path - axios will combine it with baseURL
+  // Proxy mode: baseURL (/api/proxy) + path (business/123) = /api/proxy/business/123 ✅
+  // Direct mode: baseURL (http://...) + path (business/123) = http://.../business/123 ✅
+  return cleanPath;
 };
 
 // API Endpoints - matching mobile app structure
